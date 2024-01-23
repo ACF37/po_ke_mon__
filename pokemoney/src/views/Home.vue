@@ -22,7 +22,9 @@ const labelData = [
 ]
 
 const saveData = localStorage.getItem("amount")
+const saveLog = localStorage.getItem("log")
 const amount = ref(saveData ? JSON.parse(saveData) : [0, 0, 0, 0, 0, 0])
+const flowLog = ref(saveLog ? JSON.parse(saveLog) : [])
 const nextFlow = ref(0)
 
 function reflect(num: number) {
@@ -31,6 +33,12 @@ function reflect(num: number) {
     if (flow) {
         amount.value[flow.from] -= num
         amount.value[flow.to] += num
+        flowLog.value.push({
+            from: flow.from,
+            to: flow.to,
+            amount: num,
+            
+        })
     }
     localStorage.setItem('amount', JSON.stringify(amount.value))
 }
@@ -64,11 +72,12 @@ function openModal(flowNum: number) {
 
 <style>
 .parent { 
+width: min(80vw, 340px);
 display: grid; 
 grid-template-columns: repeat(3, 1fr); 
 grid-template-rows: 1fr 0.5fr 1fr 0.5fr repeat(2, 1fr); 
-grid-column-gap: 0px;
-grid-row-gap: 0px; 
+grid-column-gap: 1rem;
+grid-row-gap: 1rem; 
 }
 .flow1 { grid-area: 1 / 1 / 2 / 2; } 
 .flow2 { grid-area: 1 / 3 / 2 / 4; } 
