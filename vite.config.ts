@@ -12,6 +12,6 @@ export default defineConfig({
   plugins: [vue()],
   root: 'pokemoney',
   build: {
-    outDir: './docs'
+    outDir: '../docs'
   }
 })
