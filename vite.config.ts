@@ -6,11 +6,12 @@ const path = require('path')
 export default defineConfig({
   resolve: {
     alias: {
-      '@' : path.resolve(__dirname, './src')
+      '@' : path.resolve(__dirname, './pokemoney/src')
     },
   },
   plugins: [vue()],
+  root: 'pokemoney',
   build: {
-    outDir: '../docs'
+    outDir: './docs'
   }
 })
