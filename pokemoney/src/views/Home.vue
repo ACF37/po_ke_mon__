@@ -81,6 +81,20 @@ function openModal(flowNum: number) {
         :amount="amount[label.id]"
     />
 </div>
+<div class="log">
+    <h3>履歴</h3>
+    <table>
+        <tr v-for="flow in flowLog">
+            <td>{{ flow.date }}</td>
+            <td>
+                {{ labelData.find((l) => l.id == flow.from)?.label }}
+                →
+                {{ labelData.find((l) => l.id == flow.to)?.label }}
+            </td>
+            <td>{{ flow.amount }}円</td>
+        </tr>
+    </table>
+</div>
 </template>
 
 <style>
