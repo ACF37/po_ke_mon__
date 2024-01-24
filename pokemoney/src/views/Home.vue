@@ -27,6 +27,18 @@ const amount = ref(saveData ? JSON.parse(saveData) : [0, 0, 0, 0, 0, 0])
 const flowLog = ref(saveLog ? JSON.parse(saveLog) : [])
 const nextFlow = ref(0)
 
+function getDate() {
+    var now = new Date
+    var Y = now.getFullYear();
+    var M = now.getMonth()+1;
+    var D = now.getDate();
+    var H = now.getHours();
+    var Min = now.getMinutes();
+    var Sec = now.getSeconds();
+
+    return `${Y}/${M}/${D} ${H}:${Min}:${Sec}`;
+}
+
 function reflect(num: number) {
     isModalOpen.value = false
     const flow = flowData.find((flow) => flow.id === nextFlow.value)
@@ -37,10 +49,11 @@ function reflect(num: number) {
             from: flow.from,
             to: flow.to,
             amount: num,
-            
+            date: getDate(),
         })
     }
     localStorage.setItem('amount', JSON.stringify(amount.value))
+    localStorage.setItem('log', JSON.stringify(flowLog.value))
 }
 function openModal(flowNum: number) {
     isModalOpen.value = true
