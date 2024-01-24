@@ -77,6 +77,7 @@ function openModal(flowNum: number) {
     <ShowAmount
         v-for="label in labelData"
         :class="label.name"
+        class="card"
         :label="label.label"
         :amount="amount[label.id]"
     />
