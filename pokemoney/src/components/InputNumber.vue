@@ -5,7 +5,11 @@ const emit = defineEmits(['submitnum','close'])
 const amount = ref()
 
 function submit() {
-    emit('submitnum', amount.value)
+    if (amount.value==0 || isNaN(amount.value)) {
+        emit('close')
+    } else {
+        emit('submitnum', amount.value)
+    }
 }
 </script>
 
