@@ -60,6 +60,12 @@ function openModal(flowNum: number) {
     nextFlow.value = flowNum
 
 }
+function deleteLog() {
+    localStorage.setItem('amount','')
+    localStorage.setItem('log', '')
+    amount.value = [0, 0, 0, 0, 0, 0]
+    flowLog.value = []
+}
 
 </script>
 
@@ -95,6 +101,14 @@ function openModal(flowNum: number) {
             <td>{{ flow.amount }}円</td>
         </tr>
     </table>
+</div>
+<div class="menu">
+    <details>
+        <summary>Settings</summary>
+        <button @click="deleteLog()">
+            Clear History
+        </button>
+    </details>
 </div>
 </template>
 
